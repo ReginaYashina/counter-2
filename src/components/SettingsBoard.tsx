@@ -1,4 +1,4 @@
-import {Button, TextField} from '@mui/material';
+import {Button, Grid2, Paper, TextField} from '@mui/material';
 import {ChangeEvent, useState} from 'react';
 import s from './counter.module.css'
 
@@ -26,23 +26,31 @@ export const SettingsBoard = ({
     const inputClass = Number(maxValue) < 0 || Number(startValue) < 0 || Number(maxValue) <= Number(startValue) ? s.error : ''
     const isDisabled = Number(maxValue) < 0 || Number(startValue) < 0 || Number(maxValue) <= Number(startValue) ? true : false
     return (
-        <div>
-            <TextField
-                type={'number'}
-                value={startValue}
-                variant="outlined"
-                onChange={setStartValueHandler}
-                className={inputClass}/>
-            <TextField
-                type={'number'}
-                value={maxValue}
-                variant="outlined"
-                onChange={setMaxValueHandler}
-                className={inputClass}/>
-            <Button
-                variant="contained"
-                onClick={setValues}
-                disabled={isDisabled}>set</Button>
-        </div>
+        <Paper
+            elevation={12}
+            sx={{maxWidth: '450px', height: '200px', padding: '20px'}}>
+            <Grid2 container height={'100%'} flexDirection={'column'} alignContent={'center'}
+                   justifyContent={'space-around'}>
+                <TextField
+                    type={'number'}
+                    value={startValue}
+                    variant="outlined"
+                    onChange={setStartValueHandler}
+                    className={inputClass}
+                    label="start value"
+                />
+                <TextField
+                    type={'number'}
+                    value={maxValue}
+                    variant="outlined"
+                    onChange={setMaxValueHandler}
+                    className={inputClass}
+                    label="max value"/>
+                <Button
+                    variant="contained"
+                    onClick={setValues}
+                    disabled={isDisabled}>set</Button>
+            </Grid2>
+        </Paper>
     );
 };

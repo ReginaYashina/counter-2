@@ -1,5 +1,6 @@
 import {SettingsBoard} from './SettingsBoard';
 import {CounterBoard} from './CounterBoard';
+import {Container, Grid2} from '@mui/material';
 
 type CounterPropsType = {
     maxValue: string
@@ -26,23 +27,25 @@ export const Counter = ({
                             isSettingsOpen
                         }: CounterPropsType) => {
     return (
-        <div>
+        <Container sx={{minHeight: '100vh'}}>
+            <Grid2 container sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh'}}>
+                {isSettingsOpen
+                    ?
+                    <SettingsBoard maxValue={maxValue}
+                                   startValue={startValue}
+                                   setStartValue={setStartValue}
+                                   setMaxValue={setMaxValue}
+                                   setValues={setValues}/>
 
-            {isSettingsOpen
-                ?
-                <SettingsBoard maxValue={maxValue}
-                               startValue={startValue}
-                               setStartValue={setStartValue}
-                               setMaxValue={setMaxValue}
-                               setValues={setValues}/>
+                    : <CounterBoard maxValue={maxValue}
+                                    count={count}
+                                    setIncCounter={setIncCounter}
+                                    resetIncCounter={resetIncCounter}
+                                    openSettings={openSettings}
+                    />
 
-                : <CounterBoard count={count}
-                                setIncCounter={setIncCounter}
-                                resetIncCounter={resetIncCounter}
-                                openSettings={openSettings}
-                />
-
-            }
-        </div>
+                }
+            </Grid2>
+        </Container>
     );
 };

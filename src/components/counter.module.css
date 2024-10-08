@@ -1,3 +1,11 @@
 .error{
-    background-color: red;
+    background-color: #f1b3b3;
+}
+.count{
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.countMax{
+    color: red;
 }
